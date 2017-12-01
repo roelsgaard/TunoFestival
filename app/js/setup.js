@@ -7,6 +7,7 @@ import App from './App';
 import configureStore from './configureStore';
 import getTheme from '../native-base-theme/components';
 import platform from '../native-base-theme/variables/platform';
+import theme from './themes/base-theme';
 
 function setup():React.Component {
   class Root extends Component {
@@ -21,7 +22,7 @@ function setup():React.Component {
 
     render() {
       return (
-        <StyleProvider style={getTheme(platform)}>
+        <StyleProvider style={getTheme(theme)}>
           <Provider store={this.state.store}>
             <App />
           </Provider>

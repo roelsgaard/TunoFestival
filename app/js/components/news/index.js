@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
     },
     contentSpacing: {
         marginLeft: 10,
-        marginRight: 10
+        marginRight: 10,
+    },
+    footer: {
+        backgroundColor: 'transparent',
     }
 });
 
@@ -124,16 +127,16 @@ class News extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            <Button badge vertical>
+                            <Button active badge vertical>
                                 <Badge><Text>2</Text></Badge>
                                 <Icon name="apps"/>
-                                <Text>Apps</Text>
+                                <Text>Nyheder</Text>
                             </Button>
                             <Button vertical>
                                 <Icon name="camera"/>
                                 <Text>Camera</Text>
                             </Button>
-                            <Button active badge vertical>
+                            <Button badge vertical>
                                 <Badge><Text>51</Text></Badge>
                                 <Icon active name="navigate"/>
                                 <Text>Navigate</Text>
