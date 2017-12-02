@@ -38,15 +38,15 @@ export default (variables = variable) => {
         '.badge': {
           'NativeBase.Badge': {
             'NativeBase.Text': {
-              fontSize: 11,
+              fontSize: 9,
               fontWeight: (platform === 'ios') ? '600' : undefined,
-              lineHeight: 14,
+              lineHeight: 11,
             },
             top: -3,
             alignSelf: 'center',
-            left: 10,
+            left: 15,
             zIndex: 99,
-            height: 18,
+            height: 15,
             padding: 1.7,
             paddingHorizontal: 3,
           },
@@ -56,6 +56,7 @@ export default (variables = variable) => {
         },
         'NativeBase.Icon': {
           color: variables.tabBarTextColor,
+            fontSize: 16,
         },
         'NativeBase.IconNB': {
           color: variables.tabBarTextColor,

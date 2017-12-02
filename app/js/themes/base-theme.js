@@ -98,7 +98,7 @@ const baseTheme = {
     },
 
     // Footer
-    footerHeight: 55,
+    footerHeight: 45,
     footerDefaultBg: 'transparent',
 
     // FooterTab
