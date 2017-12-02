@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {View, Image, Text as RNText, StyleSheet} from 'react-native';
-import AppTheme from '../../themes/app-theme';
-
 import {
     Container,
-    Header,
     Content,
     Card,
     CardItem,
@@ -17,15 +14,17 @@ import {
     Right,
     Button,
     Icon,
-    Badge
+    Badge,
 } from 'native-base';
+
+import AppTheme from '../../themes/app-theme';
 
 const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
         width: null,
         height: null,
-        resizeMode: 'cover'
+        resizeMode: 'cover',
     },
     header: {
         marginTop: 20,
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontSize: 25,
         fontWeight: 'bold',
-        color: AppTheme.headerTextColor
+        color: AppTheme.headerTextColor,
     },
     contentSpacing: {
         marginLeft: 10,
@@ -42,13 +41,13 @@ const styles = StyleSheet.create({
     },
     footer: {
         backgroundColor: 'transparent',
-    }
+    },
 });
 
 class News extends Component {
     static navigationOptions = {
-        header: null
-    }
+        header: null,
+    };
 
     render() {
         return (
@@ -64,14 +63,16 @@ class News extends Component {
                                     <Left>
                                         <Thumbnail source={{uri: 'https://loremflickr.com/100/100'}}/>
                                         <Body>
-                                        <Text>NativeBase</Text>
-                                        <Text note>GeekyAnts</Text>
+                                            <Text>NativeBase</Text>
+                                            <Text note>GeekyAnts</Text>
                                         </Body>
                                     </Left>
                                 </CardItem>
                                 <CardItem cardBody>
-                                    <Image source={{uri: 'https://loremflickr.com/400/200'}}
-                                           style={{height: 200, width: null, flex: 1}}/>
+                                    <Image
+                                        source={{uri: 'https://loremflickr.com/400/200'}}
+                                        style={{height: 200, width: null, flex: 1}}
+                                    />
                                 </CardItem>
                                 <CardItem>
                                     <Left>
@@ -81,10 +82,10 @@ class News extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Button transparent>
-                                        <Icon active name="chatbubbles"/>
-                                        <Text>4 Comments</Text>
-                                    </Button>
+                                        <Button transparent>
+                                            <Icon active name="chatbubbles"/>
+                                            <Text>4 Comments</Text>
+                                        </Button>
                                     </Body>
                                     <Right>
                                         <Text>11h ago</Text>
@@ -96,14 +97,16 @@ class News extends Component {
                                     <Left>
                                         <Thumbnail source={{uri: 'https://loremflickr.com/100/100'}}/>
                                         <Body>
-                                        <Text>NativeBase</Text>
-                                        <Text note>GeekyAnts</Text>
+                                            <Text>NativeBase</Text>
+                                            <Text note>GeekyAnts</Text>
                                         </Body>
                                     </Left>
                                 </CardItem>
                                 <CardItem cardBody>
-                                    <Image source={{uri: 'https://loremflickr.com/400/200'}}
-                                           style={{height: 200, width: null, flex: 1}}/>
+                                    <Image
+                                        source={{uri: 'https://loremflickr.com/400/200'}}
+                                        style={{height: 200, width: null, flex: 1}}
+                                    />
                                 </CardItem>
                                 <CardItem>
                                     <Left>
@@ -113,10 +116,10 @@ class News extends Component {
                                         </Button>
                                     </Left>
                                     <Body>
-                                    <Button transparent>
-                                        <Icon active name="chatbubbles"/>
-                                        <Text>4 Comments</Text>
-                                    </Button>
+                                        <Button transparent>
+                                            <Icon active name="chatbubbles"/>
+                                            <Text>4 Comments</Text>
+                                        </Button>
                                     </Body>
                                     <Right>
                                         <Text>11h ago</Text>
