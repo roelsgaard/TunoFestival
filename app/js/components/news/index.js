@@ -19,6 +19,8 @@ import {
 
 import AppTheme from '../../themes/app-theme';
 
+import Facebook from '../../lib/fb_sdk';
+
 const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
@@ -49,7 +51,63 @@ class News extends Component {
         header: null,
     };
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            feeds: []
+        };
+    }
+
+    componentDidMount(){
+        Facebook.getPageFeed().then(data => {
+            this.setState({feeds:data})
+        });
+    }
+
     render() {
+        let feedItems = this.state.feeds.map(function(feed) {
+            return (
+                <Card key={feed.id}>
+                    <CardItem>
+                        <Left>
+                            <Thumbnail source={{uri: feed.icon}}/>
+                            <Body>
+                            <Text>Tunø Festival</Text>
+                            <Text note>{feed.story}</Text>
+                            </Body>
+                        </Left>
+                    </CardItem>
+                    <CardItem cardBody>
+                        <Text>{feed.message}</Text>
+                    </CardItem>
+                    <CardItem cardBody>
+                        <Image
+                            source={{uri: feed.picture}}
+                            style={{height: 200, width: null, flex: 1}}
+                        />
+                    </CardItem>
+                    <CardItem>
+                        <Left>
+                            <Button transparent>
+                                <Icon active name="thumbs-up"/>
+                                <Text>12 Likes</Text>
+                            </Button>
+                        </Left>
+                        <Body>
+                        <Button transparent>
+                            <Icon active name="chatbubbles"/>
+                            <Text>4 Comments</Text>
+                        </Button>
+                        </Body>
+                        <Right>
+                            <Text>11h ago</Text>
+                        </Right>
+                    </CardItem>
+                </Card>
+            );
+        });
+
         return (
             <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
                 <RNText style={styles.header}>
@@ -58,74 +116,7 @@ class News extends Component {
                 <Container>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            <Card>
-                                <CardItem>
-                                    <Left>
-                                        <Thumbnail source={{uri: 'https://loremflickr.com/100/100'}}/>
-                                        <Body>
-                                            <Text>NativeBase</Text>
-                                            <Text note>GeekyAnts</Text>
-                                        </Body>
-                                    </Left>
-                                </CardItem>
-                                <CardItem cardBody>
-                                    <Image
-                                        source={{uri: 'https://loremflickr.com/400/200'}}
-                                        style={{height: 200, width: null, flex: 1}}
-                                    />
-                                </CardItem>
-                                <CardItem>
-                                    <Left>
-                                        <Button transparent>
-                                            <Icon active name="thumbs-up"/>
-                                            <Text>12 Likes</Text>
-                                        </Button>
-                                    </Left>
-                                    <Body>
-                                        <Button transparent>
-                                            <Icon active name="chatbubbles"/>
-                                            <Text>4 Comments</Text>
-                                        </Button>
-                                    </Body>
-                                    <Right>
-                                        <Text>11h ago</Text>
-                                    </Right>
-                                </CardItem>
-                            </Card>
-                            <Card>
-                                <CardItem>
-                                    <Left>
-                                        <Thumbnail source={{uri: 'https://loremflickr.com/100/100'}}/>
-                                        <Body>
-                                            <Text>NativeBase</Text>
-                                            <Text note>GeekyAnts</Text>
-                                        </Body>
-                                    </Left>
-                                </CardItem>
-                                <CardItem cardBody>
-                                    <Image
-                                        source={{uri: 'https://loremflickr.com/400/200'}}
-                                        style={{height: 200, width: null, flex: 1}}
-                                    />
-                                </CardItem>
-                                <CardItem>
-                                    <Left>
-                                        <Button transparent>
-                                            <Icon active name="thumbs-up"/>
-                                            <Text>12 Likes</Text>
-                                        </Button>
-                                    </Left>
-                                    <Body>
-                                        <Button transparent>
-                                            <Icon active name="chatbubbles"/>
-                                            <Text>4 Comments</Text>
-                                        </Button>
-                                    </Body>
-                                    <Right>
-                                        <Text>11h ago</Text>
-                                    </Right>
-                                </CardItem>
-                            </Card>
+                            {feedItems}
                         </View>
                     </Content>
                     <Footer>
