@@ -18,8 +18,9 @@ import {
 } from 'native-base';
 
 import AppTheme from '../../themes/app-theme';
-
 import Facebook from '../../lib/fb_sdk';
+import Hyperlink from 'react-native-hyperlink'
+import Moment from 'moment';
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -67,41 +68,67 @@ class News extends Component {
 
     render() {
         let feedItems = this.state.feeds.map(function(feed) {
+            let likes = null;
+            if(feed && feed.likes && feed.likes.summary){
+                likes = <Text>{feed.likes.summary.total_count} Likes</Text>
+            } else {
+                likes = <Text>? Likes</Text>
+            }
+
+            let comments = null;
+            if(feed && feed.comments && feed.comments.summary){
+                comments = <Text>{feed.comments.summary.total_count} Comments</Text>
+            } else {
+                comments = <Text>? Comments</Text>
+            }
+
+            let story = <Text></Text>;
+            if(feed.story) {
+                story = <Text note style={{margin: 20}}>{feed.story}</Text>
+            }
+
             return (
                 <Card key={feed.id}>
-                    <CardItem>
+                    <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
                         <Left>
-                            <Thumbnail source={{uri: feed.icon}}/>
+                            <Thumbnail style={{backgroundColor: 'black'}} source={{uri: "https://scontent.faar1-1.fna.fbcdn.net/v/t31.0-8/23405980_1507978159287491_4484996441375042237_o.png?oh=3013b87a13d506c49a3d839f2f303732&oe=5AF71A0D"}}/>
                             <Body>
-                            <Text>Tunø Festival</Text>
-                            <Text note>{feed.story}</Text>
+                                <Text style={{color: "#365899", fontWeight: "bold"}}>Tunø Festival</Text>
+                                <Text note>{Moment(feed.created_time).format("DD. MMM YYYY")}</Text>
                             </Body>
                         </Left>
                     </CardItem>
                     <CardItem cardBody>
-                        <Text>{feed.message}</Text>
+                        <Hyperlink
+                            linkDefault={ true }
+                            linkStyle={ { color: '#2980b9' } }
+                        >
+                            {story}
+                            <Text style={{margin: 20}}>{feed.message}</Text>
+                        </Hyperlink>
                     </CardItem>
-                    <CardItem cardBody>
+                    <CardItem cardBody style={{borderBottomColor: "lightgray", borderBottomWidth: 1, paddingBottom: 20}}>
                         <Image
                             source={{uri: feed.picture}}
-                            style={{height: 200, width: null, flex: 1}}
+                            style={{height: 100, width: 100, flex: 1, alignSelf: 'center'}}
+                            resizeMode='contain'
                         />
                     </CardItem>
                     <CardItem>
                         <Left>
                             <Button transparent>
                                 <Icon active name="thumbs-up"/>
-                                <Text>12 Likes</Text>
+                                {likes}
                             </Button>
                         </Left>
                         <Body>
                         <Button transparent>
                             <Icon active name="chatbubbles"/>
-                            <Text>4 Comments</Text>
+                            {comments}
                         </Button>
                         </Body>
                         <Right>
-                            <Text>11h ago</Text>
+                            <Text style={{fontSize: 12}}>{Moment(feed.created_time).fromNow()}</Text>
                         </Right>
                     </CardItem>
                 </Card>
