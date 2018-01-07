@@ -19,7 +19,7 @@ function setup():React.Component {
       Moment.updateLocale('da', daLocale);
       this.state = {
         isLoading: false,
-        store: configureStore(() => this.setState({ isLoading: false })),
+        store: configureStore(() => this.setState({isLoading: false}))
       };
     }
 

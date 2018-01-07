@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Login from "../components/login/";
-import Home from "../components/home/";
-import News from "../components/news/";
-import Splash from "../components/splash/";
+import Login from "../components/login";
+import Home from "../components/home";
+import News from "../components/news";
+import Program from "../components/program";
+import Splash from "../components/splash";
 import BlankPage from "../components/blankPage";
 import HomeDrawerRouter from "./HomeDrawerRouter";
 import { StackNavigator } from "react-navigation";
@@ -15,5 +16,6 @@ export default (StackNav = StackNavigator({
     Login: { screen: Login },
     Home: { screen: Home },
     BlankPage: { screen: BlankPage },
-    News: { screen: News }
+    News: { screen: News },
+    Program: { screen: Program }
 }));

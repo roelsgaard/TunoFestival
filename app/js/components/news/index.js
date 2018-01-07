@@ -18,7 +18,7 @@ import {
 } from 'native-base';
 
 import AppTheme from '../../themes/app-theme';
-import Facebook from '../../lib/fb_sdk';
+import Facebook from '../../lib/FacebookGraphApi';
 import Hyperlink from 'react-native-hyperlink'
 import Moment from 'moment';
 
@@ -148,23 +148,14 @@ class News extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            <Button active badge vertical>
+                            <Button active badge vertical onPress={() => this.props.navigation.navigate("News")}>
                                 <Badge><Text>2</Text></Badge>
                                 <Icon name="apps"/>
                                 <Text>Nyheder</Text>
                             </Button>
-                            <Button vertical>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Program")}>
                                 <Icon name="camera"/>
-                                <Text>Camera</Text>
-                            </Button>
-                            <Button badge vertical>
-                                <Badge><Text>51</Text></Badge>
-                                <Icon active name="navigate"/>
-                                <Text>Navigate</Text>
-                            </Button>
-                            <Button vertical>
-                                <Icon name="person"/>
-                                <Text>Contact</Text>
+                                <Text>Program</Text>
                             </Button>
                         </FooterTab>
                     </Footer>
