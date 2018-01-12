@@ -81,9 +81,9 @@ class News extends Component {
                         first={isFirst}
                         last={isLast}
                         active={isActive}
-                        style={{paddingLeft: 10, paddingRight: 10}}
+                        style={{paddingLeft: 10, paddingRight: 10, borderColor: "#29A06A", backgroundColor: isActive ? "#29A06A" : "white" }}
                         onPress={()=> {this.setState({selectedEvents: eventGroup.name})}}>
-                        <Text style={{fontSize: 12}}>{eventGroup.name.toUpperCase()}</Text>
+                        <Text style={{fontSize: 12, color: isActive ? "white" : "#29A06A"}}>{eventGroup.name.toUpperCase()}</Text>
                     </Button>
                 );
             });
@@ -105,11 +105,11 @@ class News extends Component {
                                 {thumbnail}
                             </Left>
                             <Body style={{flex: 2}}>
-                                <Text style={{color: "#365899", fontWeight: "bold"}}>{event.name}</Text>
+                                <Text style={{color: "#29A06A", fontWeight: "bold"}}>{event.name}</Text>
                                 <Text note style={{fontSize: 12}}>{Moment(event.start_time).format("DD. MMM YYYY")}</Text>
                             </Body>
                             <Right style={{flex: 1}}>
-                                <Text note>{Moment(event.start_time).format("HH:mm")}</Text>
+                                <Text note style={{color: "#29A06A"}}>{Moment(event.start_time).format("HH:mm")}</Text>
                             </Right>
                         </CardItem>
                     </Card>
@@ -135,12 +135,16 @@ class News extends Component {
                         <FooterTab>
                             <Button badge vertical onPress={() => this.props.navigation.navigate("News")}>
                                 <Badge><Text>2</Text></Badge>
-                                <Icon name="apps"/>
+                                <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>
                             <Button active vertical onPress={() => this.props.navigation.navigate("Program")}>
-                                <Icon name="camera"/>
+                                <Icon name="md-calendar"/>
                                 <Text>Program</Text>
+                            </Button>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Albums")}>
+                                <Icon name="md-images"/>
+                                <Text>Billeder</Text>
                             </Button>
                         </FooterTab>
                     </Footer>

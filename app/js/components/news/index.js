@@ -68,20 +68,6 @@ class News extends Component {
 
     render() {
         let feedItems = this.state.feeds.map(function(feed) {
-            let likes = null;
-            if(feed && feed.likes && feed.likes.summary){
-                likes = <Text>{feed.likes.summary.total_count} Likes</Text>
-            } else {
-                likes = <Text>? Likes</Text>
-            }
-
-            let comments = null;
-            if(feed && feed.comments && feed.comments.summary){
-                comments = <Text>{feed.comments.summary.total_count} Comments</Text>
-            } else {
-                comments = <Text>? Comments</Text>
-            }
-
             let story = <Text></Text>;
             if(feed.story) {
                 story = <Text note style={{margin: 20}}>{feed.story}</Text>
@@ -93,7 +79,7 @@ class News extends Component {
                         <Left>
                             <Thumbnail style={{backgroundColor: 'black'}} source={{uri: "https://scontent.faar1-1.fna.fbcdn.net/v/t31.0-8/23405980_1507978159287491_4484996441375042237_o.png?oh=3013b87a13d506c49a3d839f2f303732&oe=5AF71A0D"}}/>
                             <Body>
-                                <Text style={{color: "#365899", fontWeight: "bold"}}>Tunø Festival</Text>
+                                <Text style={{color: "#29A06A", fontWeight: "bold"}}>Tunø Festival</Text>
                                 <Text note>{Moment(feed.created_time).format("DD. MMM YYYY")}</Text>
                             </Body>
                         </Left>
@@ -101,7 +87,7 @@ class News extends Component {
                     <CardItem cardBody>
                         <Hyperlink
                             linkDefault={ true }
-                            linkStyle={ { color: '#2980b9' } }
+                            linkStyle={ { color: '#29A06A' } }
                         >
                             {story}
                             <Text style={{margin: 20}}>{feed.message}</Text>
@@ -115,20 +101,8 @@ class News extends Component {
                         />
                     </CardItem>
                     <CardItem>
-                        <Left>
-                            <Button transparent>
-                                <Icon active name="thumbs-up"/>
-                                {likes}
-                            </Button>
-                        </Left>
-                        <Body>
-                        <Button transparent>
-                            <Icon active name="chatbubbles"/>
-                            {comments}
-                        </Button>
-                        </Body>
                         <Right>
-                            <Text style={{fontSize: 12}}>{Moment(feed.created_time).fromNow()}</Text>
+                            <Text style={{fontSize: 12, color: "#29A06A"}}>{Moment(feed.created_time).fromNow()}</Text>
                         </Right>
                     </CardItem>
                 </Card>
@@ -150,12 +124,16 @@ class News extends Component {
                         <FooterTab>
                             <Button active badge vertical onPress={() => this.props.navigation.navigate("News")}>
                                 <Badge><Text>2</Text></Badge>
-                                <Icon name="apps"/>
+                                <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>
                             <Button vertical onPress={() => this.props.navigation.navigate("Program")}>
-                                <Icon name="camera"/>
+                                <Icon name="md-calendar"/>
                                 <Text>Program</Text>
+                            </Button>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Albums")}>
+                                <Icon name="md-images"/>
+                                <Text>Billeder</Text>
                             </Button>
                         </FooterTab>
                     </Footer>

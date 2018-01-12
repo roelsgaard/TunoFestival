@@ -3,6 +3,8 @@ import Login from "../components/login";
 import Home from "../components/home";
 import News from "../components/news";
 import Program from "../components/program";
+import Albums from "../components/albums";
+import Album from "../components/album";
 import Splash from "../components/splash";
 import BlankPage from "../components/blankPage";
 import HomeDrawerRouter from "./HomeDrawerRouter";
@@ -17,5 +19,7 @@ export default (StackNav = StackNavigator({
     Home: { screen: Home },
     BlankPage: { screen: BlankPage },
     News: { screen: News },
-    Program: { screen: Program }
+    Program: { screen: Program },
+    Albums: { screen: Albums },
+    Album: { screen: Album }
 }));
