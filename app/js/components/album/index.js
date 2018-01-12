@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     contentSpacing: {
         marginLeft: 10,
         marginRight: 10,
+        flexDirection: "row",
+        flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     footer: {
         backgroundColor: 'transparent',
@@ -73,7 +76,7 @@ class News extends Component {
         let showPictures = (pictures) => {
             return pictures.map(picture => {
                 return (
-                    <Thumbnail key={picture.id} square source={{uri: picture.source}}/>
+                    <Image key={picture.id} square source={{uri: picture.source}} style={{margin: 10, width: 90, height: 90}}/>
                 );
             });
         };
@@ -88,7 +91,7 @@ class News extends Component {
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Billeder</Title>
+                            <Title>{this.props.navigation.state.params.albumName}</Title>
                         </Body>
                         <Right />
                     </Header>

@@ -76,7 +76,7 @@ class News extends Component {
                 }
 
                 return (
-                    <TouchableHighlight key={album.id} onPress={() => this.props.navigation.navigate("Album", {albumId: album.id})}>
+                    <TouchableHighlight key={album.id} onPress={() => this.props.navigation.navigate("Album", {albumId: album.id, albumName: album.name})}>
                         <View>
                             <Card style={{marginTop: 0, marginBottom: 0}}>
                                 <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
