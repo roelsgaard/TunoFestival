@@ -74,6 +74,27 @@ class Facebook {
         });
     }
 
+    static getEvent(id) {
+        return fetch("https://graph.facebook.com/v2.11/" + id + "?fields=name,description,cover&access_token=765827880295219%7ChdjDO38R3S8r8ZUfUABPldns6vQ", {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(data => {
+            return data.json();
+        })
+        .then(event => {
+            console.log(event);
+            return event;
+        })
+        .catch(err => {
+            console.log(err);
+            throw err;
+        });
+    }
+
     static getAlbums() {
         return fetch("https://graph.facebook.com/v2.11/tunoefestival/albums?fields=name,picture,count,type,created_time,description&access_token=765827880295219%7ChdjDO38R3S8r8ZUfUABPldns6vQ", {
             method: 'GET',
@@ -99,7 +120,7 @@ class Facebook {
         });
     }
 
-    static getAlbumPictures(id) {
+    static getAlbumImages(id) {
         return fetch("https://graph.facebook.com/v2.11/" + id + "/photos?fields=source&access_token=765827880295219%7ChdjDO38R3S8r8ZUfUABPldns6vQ", {
             method: 'GET',
             headers: {

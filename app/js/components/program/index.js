@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet} from 'react-native';
+import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
 import {
     Container,
     Content,
@@ -99,20 +99,24 @@ class News extends Component {
                 }
 
                 return (
-                    <Card key={event.id} style={{marginTop: 0, marginBottom: 0}}>
-                        <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
-                            <Left style={{flex: 1}}>
-                                {thumbnail}
-                            </Left>
-                            <Body style={{flex: 2}}>
-                                <Text style={{color: "#29A06A", fontWeight: "bold"}}>{event.name}</Text>
-                                <Text note style={{fontSize: 12}}>{Moment(event.start_time).format("DD. MMM YYYY")}</Text>
-                            </Body>
-                            <Right style={{flex: 1}}>
-                                <Text note style={{color: "#29A06A"}}>{Moment(event.start_time).format("HH:mm")}</Text>
-                            </Right>
-                        </CardItem>
-                    </Card>
+                    <TouchableHighlight key={event.id} onPress={() => this.props.navigation.navigate("Event", {eventId: event.id, eventName: event.name, eventImageSource: event.picture.data.url})}>
+                        <View>
+                            <Card style={{marginTop: 0, marginBottom: 0}}>
+                                <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
+                                    <Left style={{flex: 1}}>
+                                        {thumbnail}
+                                    </Left>
+                                    <Body style={{flex: 2}}>
+                                        <Text style={{color: "#29A06A", fontWeight: "bold"}}>{event.name}</Text>
+                                        <Text note style={{fontSize: 12}}>{Moment(event.start_time).format("DD. MMM YYYY")}</Text>
+                                    </Body>
+                                    <Right style={{flex: 1}}>
+                                        <Text note style={{color: "#29A06A"}}>{Moment(event.start_time).format("HH:mm")}</Text>
+                                    </Right>
+                                </CardItem>
+                            </Card>
+                        </View>
+                    </TouchableHighlight>
                 );
             });
         };

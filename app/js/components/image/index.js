@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Image, Text as RNText, StyleSheet, Dimensions} from 'react-native';
 import {
     Container,
     Content,
@@ -42,11 +42,10 @@ const styles = StyleSheet.create({
         color: AppTheme.headerTextColor,
     },
     contentSpacing: {
+        flex: 1,
         marginLeft: 10,
         marginRight: 10,
-        flexDirection: "row",
-        flexWrap: 'wrap',
-        justifyContent: 'center'
+        backgroundColor: "red"
     },
     footer: {
         backgroundColor: 'transparent',
@@ -62,26 +61,25 @@ class News extends Component {
         super(props);
 
         this.state = {
-            images: []
-        };
+            imgWidth: 0,
+            imgHeight: 0
+        }
     }
 
-    componentDidMount(){
-        Facebook.getAlbumImages(this.props.navigation.state.params.albumId).then(data => {
-            this.setState({images:data})
-        });
+    componentDidMount() {
+        let imageSource = this.props.navigation.state.params.imageSource;
+
+        Image.getSize(imageSource, (width, height) => {
+            const screenWidth = Dimensions.get('window').width;
+            const scaleFactor = width / screenWidth;
+            const imageHeight = height / scaleFactor;
+            this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
+        })
     }
 
     render() {
-        let showImages = (images) => {
-            return images.map(image => {
-                return (
-                    <TouchableHighlight key={image.id} onPress={() => this.props.navigation.navigate("Image", {imageSource: image.source})}>
-                        <Image square source={{uri: image.source}} style={{margin: 10, width: 90, height: 90}}/>
-                    </TouchableHighlight>
-                );
-            });
-        };
+        let imageSource = this.props.navigation.state.params.imageSource;
+        const {imgWidth, imgHeight} = this.state;
 
         return (
             <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
@@ -92,15 +90,9 @@ class News extends Component {
                                 <Icon name="ios-arrow-back" />
                             </Button>
                         </Left>
-                        <Body>
-                            <Title style={{width: 250}}>{this.props.navigation.state.params.albumName}</Title>
-                        </Body>
-                        <Right />
                     </Header>
                     <Content>
-                        <View style={styles.contentSpacing}>
-                            {showImages(this.state.images)}
-                        </View>
+                        <Image source={{uri: imageSource}} style={{width: imgWidth, height: imgHeight}}/>
                     </Content>
                     <Footer>
                         <FooterTab>

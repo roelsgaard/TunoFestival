@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Image, Text as RNText, StyleSheet, Dimensions} from 'react-native';
 import {
     Container,
     Content,
@@ -44,9 +44,6 @@ const styles = StyleSheet.create({
     contentSpacing: {
         marginLeft: 10,
         marginRight: 10,
-        flexDirection: "row",
-        flexWrap: 'wrap',
-        justifyContent: 'center'
     },
     footer: {
         backgroundColor: 'transparent',
@@ -62,25 +59,51 @@ class News extends Component {
         super(props);
 
         this.state = {
-            images: []
+            event: {},
+            imgWidth: 0,
+            imgHeight: 0
         };
     }
 
     componentDidMount(){
-        Facebook.getAlbumImages(this.props.navigation.state.params.albumId).then(data => {
-            this.setState({images:data})
+        Facebook.getEvent(this.props.navigation.state.params.eventId).then(data => {
+            this.setState({event:data});
+
+            Image.getSize(data.cover.source, (width, height) => {
+                const screenWidth = Dimensions.get('window').width - 50;
+                const scaleFactor = width / screenWidth;
+                const imageHeight = height / scaleFactor;
+                this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
+            })
         });
+
     }
 
     render() {
-        let showImages = (images) => {
-            return images.map(image => {
+        let showEvent = (event) => {
+            const {imgWidth, imgHeight} = this.state;
+
+            let showImage = (event) => {
+                if(event && event.cover && event.cover.source){
+                    return <Image source={{uri: event.cover.source}} resizeMethod="resize" style={{width: imgWidth, height: 200}} />
+                }
+            };
+
+            if(event) {
                 return (
-                    <TouchableHighlight key={image.id} onPress={() => this.props.navigation.navigate("Image", {imageSource: image.source})}>
-                        <Image square source={{uri: image.source}} style={{margin: 10, width: 90, height: 90}}/>
-                    </TouchableHighlight>
-                );
-            });
+                    <Card>
+                        <CardItem>
+                            <Body>
+                                {showImage(event)}
+
+                                <Hyperlink linkDefault={ true } linkStyle={{ color: '#29A06A' }}>
+                                    <Text style={{margin: 20}}>{event.description}</Text>
+                                </Hyperlink>
+                            </Body>
+                        </CardItem>
+                    </Card>
+                )
+            }
         };
 
         return (
@@ -93,13 +116,13 @@ class News extends Component {
                             </Button>
                         </Left>
                         <Body>
-                            <Title style={{width: 250}}>{this.props.navigation.state.params.albumName}</Title>
+                            <Title style={{width: 250}}>{this.props.navigation.state.params.eventName}</Title>
                         </Body>
                         <Right />
                     </Header>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            {showImages(this.state.images)}
+                            {showEvent(this.state.event)}
                         </View>
                     </Content>
                     <Footer>
@@ -109,11 +132,11 @@ class News extends Component {
                                 <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>
-                            <Button vertical onPress={() => this.props.navigation.navigate("Program")}>
+                            <Button active vertical onPress={() => this.props.navigation.navigate("Program")}>
                                 <Icon name="md-calendar"/>
                                 <Text>Program</Text>
                             </Button>
-                            <Button active vertical onPress={() => this.props.navigation.navigate("Albums")}>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Albums")}>
                                 <Icon name="md-images"/>
                                 <Text>Billeder</Text>
                             </Button>
