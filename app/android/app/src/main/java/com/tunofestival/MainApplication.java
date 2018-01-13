@@ -1,4 +1,4 @@
-package com.nativestarterkit;
+package com.tunofestival;
 
 import android.app.Application;
 

@@ -142,7 +142,7 @@ $ react-native link
 
 **Method One**
 
-*	Open the project in XCode from **ios/NativeStarterKit.xcodeproj**
+*	Open the project in XCode from **ios/TunoFestival.xcodeproj**
 
 *	Hit the play button.
 
