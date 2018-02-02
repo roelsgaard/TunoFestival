@@ -1,6 +1,6 @@
 {
   "name": "TunoFestival",
-  "version": "6.2.0",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "postinstall": "remotedev-debugger",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "color": "^0.11.3",
+    "google-auth-library": "^0.12.0",
     "lodash": "^4.13.1",
     "moment": "^2.20.1",
     "native-base": "2.1.4",
