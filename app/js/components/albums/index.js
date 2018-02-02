@@ -20,7 +20,6 @@ import {
 
 import AppTheme from '../../themes/app-theme';
 import Facebook from '../../lib/FacebookGraphApi';
-import Hyperlink from 'react-native-hyperlink'
 import Moment from 'moment';
 
 const styles = StyleSheet.create({
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class News extends Component {
+class Albums extends Component {
     static navigationOptions = {
         header: null,
     };
@@ -85,7 +84,6 @@ class News extends Component {
                                     </Left>
                                     <Body style={{flex: 2}}>
                                         <Text style={{color: "#29A06A", fontWeight: "bold"}}>{album.name}</Text>
-                                        <Text note style={{fontSize: 12, marginTop: 5}}>{album.description}</Text>
                                     </Body>
                                     <Right style={{flex: 1}}>
                                         <Text note style={{color: "#29A06A"}}>{Moment(album.created_time).format("DD. MMM YYYY")}</Text>
@@ -124,6 +122,10 @@ class News extends Component {
                                 <Icon name="md-images"/>
                                 <Text>Billeder</Text>
                             </Button>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Informations")}>
+                                <Icon name="md-list"/>
+                                <Text>Information</Text>
+                            </Button>
                         </FooterTab>
                     </Footer>
                 </Container>
@@ -132,4 +134,4 @@ class News extends Component {
     }
 }
 
-export default News;
+export default Albums;

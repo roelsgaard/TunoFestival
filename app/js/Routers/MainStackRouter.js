@@ -7,6 +7,8 @@ import Event from "../components/event";
 import Albums from "../components/albums";
 import Album from "../components/album";
 import Image from "../components/image";
+import Informations from "../components/informations";
+import Information from "../components/information";
 import Splash from "../components/splash";
 import BlankPage from "../components/blankPage";
 import HomeDrawerRouter from "./HomeDrawerRouter";
@@ -25,5 +27,7 @@ export default (StackNav = StackNavigator({
     Event: { screen: Event },
     Albums: { screen: Albums },
     Album: { screen: Album },
-    Image: { screen: Image }
+    Image: { screen: Image },
+    Informations: { screen: Informations },
+    Information: { screen: Information }
 }));

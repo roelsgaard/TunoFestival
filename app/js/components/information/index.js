@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
 import {
     Container,
     Content,
@@ -44,66 +44,37 @@ const styles = StyleSheet.create({
     contentSpacing: {
         marginLeft: 10,
         marginRight: 10,
+        flexDirection: "row",
+        flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     footer: {
         backgroundColor: 'transparent',
     },
 });
 
-class Event extends Component {
+class Album extends Component {
     static navigationOptions = {
         header: null,
     };
 
     constructor(props){
         super(props);
-
-        this.state = {
-            event: {},
-            imgWidth: 0,
-            imgHeight: 0
-        };
-    }
-
-    componentDidMount(){
-        Facebook.getEvent(this.props.navigation.state.params.eventId).then(data => {
-            this.setState({event:data});
-
-            Image.getSize(data.cover.source, (width, height) => {
-                const screenWidth = Dimensions.get('window').width - 50;
-                const scaleFactor = width / screenWidth;
-                const imageHeight = height / scaleFactor;
-                this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
-            })
-        });
-
     }
 
     render() {
-        let showEvent = (event) => {
-            const {imgWidth, imgHeight} = this.state;
-
-            let showImage = (event) => {
-                if(event && event.cover && event.cover.source){
-                    return <Image source={{uri: event.cover.source}} resizeMethod="resize" style={{width: imgWidth, height: 200}} />
-                }
-            };
-
-            if(event) {
-                return (
-                    <Card>
-                        <CardItem>
-                            <Body>
-                                {showImage(event)}
-
-                                <Hyperlink linkDefault={ true } linkStyle={{ color: '#29A06A' }}>
-                                    <Text style={{margin: 20}}>{event.description}</Text>
-                                </Hyperlink>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                )
-            }
+        let showInformation = (information) => {
+            return (
+                <Card>
+                    <CardItem>
+                        <Body>
+                            <Hyperlink linkDefault={ true } linkStyle={{ color: '#29A06A' }}>
+                                <Text style={{margin: 20}}>{information.text}</Text>
+                            </Hyperlink>
+                        </Body>
+                    </CardItem>
+                </Card>
+            )
         };
 
         return (
@@ -116,13 +87,13 @@ class Event extends Component {
                             </Button>
                         </Left>
                         <Body>
-                            <Title style={{width: 250}}>{this.props.navigation.state.params.eventName}</Title>
+                        <Title style={{width: 250}}>{this.props.navigation.state.params.title}</Title>
                         </Body>
                         <Right />
                     </Header>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            {showEvent(this.state.event)}
+                            {showInformation(this.props.navigation.state.params)}
                         </View>
                     </Content>
                     <Footer>
@@ -132,7 +103,7 @@ class Event extends Component {
                                 <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>
-                            <Button active vertical onPress={() => this.props.navigation.navigate("Program")}>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Program")}>
                                 <Icon name="md-calendar"/>
                                 <Text>Program</Text>
                             </Button>
@@ -140,7 +111,7 @@ class Event extends Component {
                                 <Icon name="md-images"/>
                                 <Text>Billeder</Text>
                             </Button>
-                            <Button vertical onPress={() => this.props.navigation.navigate("Informations")}>
+                            <Button active vertical onPress={() => this.props.navigation.navigate("Informations")}>
                                 <Icon name="md-list"/>
                                 <Text>Information</Text>
                             </Button>
@@ -152,4 +123,4 @@ class Event extends Component {
     }
 }
 
-export default Event;
+export default Album;

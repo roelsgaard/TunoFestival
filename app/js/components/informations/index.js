@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
 import {
     Container,
     Content,
@@ -15,14 +15,12 @@ import {
     Button,
     Icon,
     Badge,
-    Segment,
-    Header,
-    Title
+    Segment
 } from 'native-base';
 
 import AppTheme from '../../themes/app-theme';
 import Facebook from '../../lib/FacebookGraphApi';
-import Hyperlink from 'react-native-hyperlink'
+import GoogleSheet from '../../lib/GoogleSheetsApi';
 import Moment from 'moment';
 
 const styles = StyleSheet.create({
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Event extends Component {
+class Informations extends Component {
     static navigationOptions = {
         header: null,
     };
@@ -59,70 +57,47 @@ class Event extends Component {
         super(props);
 
         this.state = {
-            event: {},
-            imgWidth: 0,
-            imgHeight: 0
+            informations: []
         };
     }
 
     componentDidMount(){
-        Facebook.getEvent(this.props.navigation.state.params.eventId).then(data => {
-            this.setState({event:data});
-
-            Image.getSize(data.cover.source, (width, height) => {
-                const screenWidth = Dimensions.get('window').width - 50;
-                const scaleFactor = width / screenWidth;
-                const imageHeight = height / scaleFactor;
-                this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
-            })
+        GoogleSheet.getInformations().then(data => {
+            this.setState({informations:data})
         });
-
     }
 
     render() {
-        let showEvent = (event) => {
-            const {imgWidth, imgHeight} = this.state;
-
-            let showImage = (event) => {
-                if(event && event.cover && event.cover.source){
-                    return <Image source={{uri: event.cover.source}} resizeMethod="resize" style={{width: imgWidth, height: 200}} />
-                }
-            };
-
-            if(event) {
+        let showInformations = (informations) => {
+            return informations.map(information => {
                 return (
-                    <Card>
-                        <CardItem>
-                            <Body>
-                                {showImage(event)}
-
-                                <Hyperlink linkDefault={ true } linkStyle={{ color: '#29A06A' }}>
-                                    <Text style={{margin: 20}}>{event.description}</Text>
-                                </Hyperlink>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                )
-            }
+                    <TouchableHighlight key={information.title} onPress={() => this.props.navigation.navigate("Information", information)}>
+                        <View>
+                            <Card style={{marginTop: 0, marginBottom: 0}}>
+                                <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
+                                    <Body style={{flex: 2}}>
+                                        <Text style={{color: "#29A06A", fontWeight: "bold"}}>{information.title}</Text>
+                                    </Body>
+                                    <Right style={{flex: 1}}>
+                                        <Text note style={{color: "#29A06A"}}>{information.category}</Text>
+                                    </Right>
+                                </CardItem>
+                            </Card>
+                        </View>
+                    </TouchableHighlight>
+                );
+            });
         };
 
         return (
             <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
+                <RNText style={styles.header}>
+                    Information
+                </RNText>
                 <Container>
-                    <Header>
-                        <Left>
-                            <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="ios-arrow-back" />
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title style={{width: 250}}>{this.props.navigation.state.params.eventName}</Title>
-                        </Body>
-                        <Right />
-                    </Header>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            {showEvent(this.state.event)}
+                            {showInformations(this.state.informations)}
                         </View>
                     </Content>
                     <Footer>
@@ -132,7 +107,7 @@ class Event extends Component {
                                 <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>
-                            <Button active vertical onPress={() => this.props.navigation.navigate("Program")}>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Program")}>
                                 <Icon name="md-calendar"/>
                                 <Text>Program</Text>
                             </Button>
@@ -140,7 +115,7 @@ class Event extends Component {
                                 <Icon name="md-images"/>
                                 <Text>Billeder</Text>
                             </Button>
-                            <Button vertical onPress={() => this.props.navigation.navigate("Informations")}>
+                            <Button active vertical onPress={() => this.props.navigation.navigate("Informations")}>
                                 <Icon name="md-list"/>
                                 <Text>Information</Text>
                             </Button>
@@ -152,4 +127,4 @@ class Event extends Component {
     }
 }
 
-export default Event;
+export default Informations;

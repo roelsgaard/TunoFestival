@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class News extends Component {
+class Album extends Component {
     static navigationOptions = {
         header: null,
     };
@@ -117,6 +117,10 @@ class News extends Component {
                                 <Icon name="md-images"/>
                                 <Text>Billeder</Text>
                             </Button>
+                            <Button vertical onPress={() => this.props.navigation.navigate("Informations")}>
+                                <Icon name="md-list"/>
+                                <Text>Information</Text>
+                            </Button>
                         </FooterTab>
                     </Footer>
                 </Container>
@@ -125,4 +129,4 @@ class News extends Component {
     }
 }
 
-export default News;
+export default Album;
