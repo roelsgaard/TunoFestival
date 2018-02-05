@@ -122,8 +122,7 @@ class News extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            <Button active badge vertical onPress={() => this.props.navigation.navigate("News")}>
-                                <Badge><Text>2</Text></Badge>
+                            <Button active vertical onPress={() => this.props.navigation.navigate("News")}>
                                 <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>

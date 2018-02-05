@@ -98,8 +98,7 @@ class Album extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            <Button badge vertical onPress={() => this.props.navigation.navigate("News")}>
-                                <Badge><Text>2</Text></Badge>
+                            <Button vertical onPress={() => this.props.navigation.navigate("News")}>
                                 <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>

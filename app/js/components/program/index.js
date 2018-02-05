@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Image, Text as RNText, StyleSheet, TouchableHighlight, Dimensions} from 'react-native';
 import {
     Container,
     Content,
@@ -71,6 +71,9 @@ class Program extends Component {
     render() {
 
         let showEventsTabs = (eventGroups) => {
+            const screenWidth = Dimensions.get('window').width - 50;
+            const groupWidth = (screenWidth / eventGroups.length) - (2 * 5);
+
             return eventGroups.map((eventGroup, index) => {
                 let isFirst = index === 0;
                 let isLast = eventGroups.length -1 === index;
@@ -81,9 +84,9 @@ class Program extends Component {
                         first={isFirst}
                         last={isLast}
                         active={isActive}
-                        style={{paddingLeft: 10, paddingRight: 10, borderColor: "#29A06A", backgroundColor: isActive ? "#29A06A" : "white" }}
+                        style={{paddingLeft: 5, paddingRight: 5, borderColor: "#29A06A", backgroundColor: isActive ? "#29A06A" : "white" }}
                         onPress={()=> {this.setState({selectedEvents: eventGroup.name})}}>
-                        <Text style={{fontSize: 12, color: isActive ? "white" : "#29A06A"}}>{eventGroup.name.toUpperCase()}</Text>
+                        <Text style={{width: groupWidth, textAlign: "center", fontSize: 11, color: isActive ? "white" : "#29A06A"}} ellipsizeMode="tail" numberOfLines={1}>{eventGroup.name.toUpperCase()}</Text>
                     </Button>
                 );
             });
@@ -137,8 +140,7 @@ class Program extends Component {
                     </Content>
                     <Footer>
                         <FooterTab>
-                            <Button badge vertical onPress={() => this.props.navigation.navigate("News")}>
-                                <Badge><Text>2</Text></Badge>
+                            <Button vertical onPress={() => this.props.navigation.navigate("News")}>
                                 <Icon name="logo-facebook"/>
                                 <Text>Nyheder</Text>
                             </Button>
