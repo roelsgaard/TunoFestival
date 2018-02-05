@@ -16,7 +16,6 @@ class GoogleSheet {
             return data.feed.entry;
         })
         .catch(err => {
-            console.log(err);
             throw err;
         });
     }

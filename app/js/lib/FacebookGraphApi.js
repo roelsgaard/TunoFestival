@@ -21,7 +21,6 @@ class Facebook {
                 return data.data;
             })
             .catch(err => {
-                console.log(err);
                 throw err;
             });
     }
@@ -77,11 +76,9 @@ class Facebook {
                     })
                 });
 
-                console.log(eventGroups);
                 return eventGroups;
             })
             .catch(err => {
-                console.log(err);
                 throw err;
             });
     }
@@ -102,11 +99,9 @@ class Facebook {
                 return data.json();
             })
             .then(event => {
-                console.log(event);
                 return event;
             })
             .catch(err => {
-                console.log(err);
                 throw err;
             });
     }
@@ -131,11 +126,9 @@ class Facebook {
             })
             .then(albums => {
                 albums = albums.filter(album => album.type === "normal");
-                console.log(albums);
                 return albums;
             })
             .catch(err => {
-                console.log(err);
                 throw err;
             });
     }
@@ -159,11 +152,9 @@ class Facebook {
                 return data.data;
             })
             .then(pictures => {
-                console.log(pictures);
                 return pictures;
             })
             .catch(err => {
-                console.log(err);
                 throw err;
             });
     }
