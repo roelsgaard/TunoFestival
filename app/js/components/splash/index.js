@@ -5,6 +5,9 @@ import {
     Spinner,
 } from "native-base";
 
+import {connect} from "react-redux";
+import {getGeneralInfo} from "../../actions/general";
+
 import styles from "./styles";
 
 class Splash extends Component {
@@ -13,6 +16,8 @@ class Splash extends Component {
     };
 
     componentDidMount() {
+        this.props.getGeneralInfo();
+
         this.autoNavigate = setTimeout(() => {
             this.props.navigation.navigate("News");
         }, 3000);
@@ -32,8 +37,8 @@ class Splash extends Component {
                         <View style={styles.headers}>
                             <View style={styles.headersWrap}>
                                 <RNText style={styles.header1}>TUNØ FESTIVAL</RNText>
-                                <RNText style={styles.header2}>2018</RNText>
-                                <RNText style={styles.header3}>om 56 dage</RNText>
+                                <RNText style={styles.header2}>{this.props.info.year}</RNText>
+                                <RNText style={styles.header3}>{this.props.info.daysUntilStart}</RNText>
                                 <Spinner color="#fff"/>
                             </View>
                         </View>
@@ -45,4 +50,17 @@ class Splash extends Component {
     }
 }
 
-export default Splash;
+
+function bindAction(dispatch) {
+    return {
+        getGeneralInfo: () => dispatch(getGeneralInfo())
+    };
+}
+
+const mapStateToProps = state => ({
+    info: state.general.info
+});
+
+const ConnectedSplash = connect(mapStateToProps, bindAction)(Splash);
+
+export default ConnectedSplash;
