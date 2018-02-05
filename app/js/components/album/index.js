@@ -1,11 +1,8 @@
-import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
+import React, {Component} from "react";
+import {View, Image, TouchableHighlight} from "react-native";
 import {
     Container,
     Content,
-    Card,
-    CardItem,
-    Thumbnail,
     Footer,
     FooterTab,
     Left,
@@ -14,69 +11,36 @@ import {
     Right,
     Button,
     Icon,
-    Badge,
-    Segment,
     Header,
     Title
-} from 'native-base';
+} from "native-base";
 
-import AppTheme from '../../themes/app-theme';
-import Facebook from '../../lib/FacebookGraphApi';
-import Hyperlink from 'react-native-hyperlink'
-import Moment from 'moment';
+import {connect} from "react-redux";
+import {getAlbumImages} from "../../actions/albums";
 
-const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        width: null,
-        height: null,
-        resizeMode: 'cover',
-    },
-    header: {
-        marginTop: 20,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: 40,
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: AppTheme.headerTextColor,
-    },
-    contentSpacing: {
-        marginLeft: 10,
-        marginRight: 10,
-        flexDirection: "row",
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-    },
-    footer: {
-        backgroundColor: 'transparent',
-    },
-});
+import styles from "./styles";
 
 class Album extends Component {
     static navigationOptions = {
         header: null,
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
-
-        this.state = {
-            images: []
-        };
     }
 
-    componentDidMount(){
-        Facebook.getAlbumImages(this.props.navigation.state.params.albumId).then(data => {
-            this.setState({images:data})
-        });
+    componentDidMount() {
+        this.props.getAlbumImages(this.props.navigation.state.params.albumId);
     }
 
     render() {
         let showImages = (images) => {
+            if (!images) return;
+
             return images.map(image => {
                 return (
-                    <TouchableHighlight key={image.id} onPress={() => this.props.navigation.navigate("Image", {imageSource: image.source})}>
+                    <TouchableHighlight key={image.id}
+                                        onPress={() => this.props.navigation.navigate("Image", {imageSource: image.source})}>
                         <Image square source={{uri: image.source}} style={{margin: 10, width: 90, height: 90}}/>
                     </TouchableHighlight>
                 );
@@ -84,22 +48,22 @@ class Album extends Component {
         };
 
         return (
-            <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
+            <Image source={require("../../../images/background.png")} style={styles.backgroundImage}>
                 <Container>
                     <Header>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="ios-arrow-back" />
+                                <Icon name="ios-arrow-back"/>
                             </Button>
                         </Left>
                         <Body>
-                            <Title style={{width: 250}}>{this.props.navigation.state.params.albumName}</Title>
+                        <Title style={{width: 250}}>{this.props.navigation.state.params.albumName}</Title>
                         </Body>
-                        <Right />
+                        <Right/>
                     </Header>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            {showImages(this.state.images)}
+                            {showImages(this.props.images)}
                         </View>
                     </Content>
                     <Footer>
@@ -128,4 +92,16 @@ class Album extends Component {
     }
 }
 
-export default Album;
+function bindAction(dispatch) {
+    return {
+        getAlbumImages: (albumId) => dispatch(getAlbumImages(albumId))
+    };
+}
+
+const mapStateToProps = state => ({
+    images: state.albums.images
+});
+
+const ConnectedAlbum = connect(mapStateToProps, bindAction)(Album);
+
+export default ConnectedAlbum;

@@ -1,79 +1,43 @@
-import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
+import React, {Component} from "react";
+import {View, Image, Text as RNText} from "react-native";
 import {
     Container,
     Content,
-    Card,
-    CardItem,
-    Thumbnail,
     Footer,
     FooterTab,
-    Left,
-    Body,
     Text,
     Right,
     Button,
     Icon,
-    Badge,
-    Segment,
     List,
     ListItem
-} from 'native-base';
+} from "native-base";
 
-import AppTheme from '../../themes/app-theme';
-import Facebook from '../../lib/FacebookGraphApi';
-import GoogleSheet from '../../lib/GoogleSheetsApi';
-import Moment from 'moment';
+import {connect} from "react-redux";
+import {getInformations} from "../../actions/informations";
 
-const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        width: null,
-        height: null,
-        resizeMode: 'cover',
-    },
-    header: {
-        marginTop: 20,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: 40,
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: AppTheme.headerTextColor,
-    },
-    contentSpacing: {
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    footer: {
-        backgroundColor: 'transparent',
-    },
-});
+import styles from "./styles";
 
 class Informations extends Component {
     static navigationOptions = {
         header: null,
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
-
-        this.state = {
-            informations: []
-        };
     }
 
-    componentDidMount(){
-        GoogleSheet.getInformations().then(data => {
-            this.setState({informations:data})
-        });
+    componentDidMount() {
+        this.props.getInformations();
     }
 
     render() {
         let showInformations = (informations => {
             return informations.map(information => {
                 return (
-                    <ListItem button={true} key={information.title} onPress={() => this.props.navigation.navigate("Information", information)} style={{marginLeft: 0, paddingLeft: 10, backgroundColor: "white"}}>
+                    <ListItem button={true} key={information.title}
+                              onPress={() => this.props.navigation.navigate("Information", information)}
+                              style={{marginLeft: 0, paddingLeft: 10, backgroundColor: "white"}}>
                         <Text style={{color: "#29A06A"}}>{information.title}</Text>
                         <Right>
                             <Icon name="ios-arrow-forward"/>
@@ -97,7 +61,7 @@ class Informations extends Component {
         };
 
         return (
-            <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
+            <Image source={require("../../../images/background.png")} style={styles.backgroundImage}>
                 <RNText style={styles.header}>
                     Information
                 </RNText>
@@ -105,7 +69,7 @@ class Informations extends Component {
                     <Content>
                         <View style={styles.contentSpacing}>
                             <List>
-                                {showInformationGroups(this.state.informations)}
+                                {showInformationGroups(this.props.informations)}
                             </List>
                         </View>
                     </Content>
@@ -135,4 +99,17 @@ class Informations extends Component {
     }
 }
 
-export default Informations;
+function bindAction(dispatch) {
+    return {
+        getInformations: () => dispatch(getInformations())
+    };
+}
+
+const mapStateToProps = state => ({
+    informations: state.informations.informations
+});
+
+const ConnectedInformations = connect(mapStateToProps, bindAction)(Informations);
+
+export default ConnectedInformations;
+

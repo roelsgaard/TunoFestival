@@ -1,12 +1,12 @@
-import { combineReducers } from "redux";
-import { reducer as formReducer } from "redux-form";
-import drawer from "./drawer";
-import user from "./user";
-import list from "./list";
+import {combineReducers} from "redux";
+import news from "./news";
+import events from "./events";
+import albums from "./albums";
+import informations from "./informations";
 
 export default combineReducers({
-  form: formReducer,
-  drawer,
-  user,
-  list
+    news,
+    events,
+    albums,
+    informations
 });

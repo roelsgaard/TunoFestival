@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, Dimensions} from 'react-native';
+import React, {Component} from "react";
+import {View, Image} from "react-native";
 import {
     Container,
     Content,
     Card,
     CardItem,
-    Thumbnail,
     Footer,
     FooterTab,
     Left,
@@ -14,91 +13,49 @@ import {
     Right,
     Button,
     Icon,
-    Badge,
-    Segment,
     Header,
     Title
-} from 'native-base';
+} from "native-base";
 
-import AppTheme from '../../themes/app-theme';
-import Facebook from '../../lib/FacebookGraphApi';
-import Hyperlink from 'react-native-hyperlink'
-import Moment from 'moment';
+import Hyperlink from "react-native-hyperlink"
 
-const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        width: null,
-        height: null,
-        resizeMode: 'cover',
-    },
-    header: {
-        marginTop: 20,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: 40,
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: AppTheme.headerTextColor,
-    },
-    contentSpacing: {
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    footer: {
-        backgroundColor: 'transparent',
-    },
-});
+import {connect} from "react-redux";
+import {getEvent} from "../../actions/events";
+
+import styles from "./styles";
 
 class Event extends Component {
     static navigationOptions = {
         header: null,
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
-
-        this.state = {
-            event: {},
-            imgWidth: 0,
-            imgHeight: 0
-        };
     }
 
-    componentDidMount(){
-        Facebook.getEvent(this.props.navigation.state.params.eventId).then(data => {
-            this.setState({event:data});
-
-            Image.getSize(data.cover.source, (width, height) => {
-                const screenWidth = Dimensions.get('window').width - 50;
-                const scaleFactor = width / screenWidth;
-                const imageHeight = height / scaleFactor;
-                this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
-            })
-        });
-
+    componentDidMount() {
+        this.props.getEvent(this.props.navigation.state.params.eventId);
     }
 
     render() {
         let showEvent = (event) => {
-            const {imgWidth, imgHeight} = this.state;
-
             let showImage = (event) => {
-                if(event && event.cover && event.cover.source){
-                    return <Image source={{uri: event.cover.source}} resizeMethod="resize" style={{width: imgWidth, height: 200}} />
+                if (event && event.cover && event.cover.source) {
+                    return <Image source={{uri: event.cover.source}} resizeMethod="resize"
+                                  style={{width: event.cover.imgWidth, height: 200}}/>
                 }
             };
 
-            if(event) {
+            if (event) {
                 return (
                     <Card>
                         <CardItem>
                             <Body>
-                                {showImage(event)}
+                            {showImage(event)}
 
-                                <Hyperlink linkDefault={ true } linkStyle={{ color: '#29A06A' }}>
-                                    <Text style={{margin: 20}}>{event.description}</Text>
-                                </Hyperlink>
+                            <Hyperlink linkDefault={true} linkStyle={{color: "#29A06A"}}>
+                                <Text style={{margin: 20}}>{event.description}</Text>
+                            </Hyperlink>
                             </Body>
                         </CardItem>
                     </Card>
@@ -107,22 +64,22 @@ class Event extends Component {
         };
 
         return (
-            <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
+            <Image source={require("../../../images/background.png")} style={styles.backgroundImage}>
                 <Container>
                     <Header>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="ios-arrow-back" />
+                                <Icon name="ios-arrow-back"/>
                             </Button>
                         </Left>
                         <Body>
-                            <Title style={{width: 250}}>{this.props.navigation.state.params.eventName}</Title>
+                        <Title style={{width: 250}}>{this.props.navigation.state.params.eventName}</Title>
                         </Body>
-                        <Right />
+                        <Right/>
                     </Header>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            {showEvent(this.state.event)}
+                            {showEvent(this.props.event)}
                         </View>
                     </Content>
                     <Footer>
@@ -151,4 +108,16 @@ class Event extends Component {
     }
 }
 
-export default Event;
+function bindAction(dispatch) {
+    return {
+        getEvent: (eventId) => dispatch(getEvent(eventId))
+    };
+}
+
+const mapStateToProps = state => ({
+    event: state.events.event
+});
+
+const ConnectedEvent = connect(mapStateToProps, bindAction)(Event);
+
+export default ConnectedEvent;

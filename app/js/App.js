@@ -38,7 +38,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener("change", this._handleAppStateChange);
         CodePush.sync(
             {updateDialog: true, installMode: CodePush.InstallMode.IMMEDIATE},
             status => {
@@ -65,7 +65,7 @@ class App extends Component {
     }
 
     componentWillUnmount() {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener("change", this._handleAppStateChange);
     }
 
     _handleAppStateChange(nextAppState) {

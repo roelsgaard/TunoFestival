@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, TouchableHighlight} from 'react-native';
+import React, {Component} from "react";
+import {View, Image} from "react-native";
 import {
     Container,
     Content,
     Card,
     CardItem,
-    Thumbnail,
     Footer,
     FooterTab,
     Left,
@@ -14,51 +13,22 @@ import {
     Right,
     Button,
     Icon,
-    Badge,
-    Segment,
     Header,
     Title
-} from 'native-base';
+} from "native-base";
 
-import AppTheme from '../../themes/app-theme';
-import Facebook from '../../lib/FacebookGraphApi';
-import Hyperlink from 'react-native-hyperlink'
-import Moment from 'moment';
+import Hyperlink from "react-native-hyperlink"
 
-const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        width: null,
-        height: null,
-        resizeMode: 'cover',
-    },
-    header: {
-        marginTop: 20,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: 40,
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: AppTheme.headerTextColor,
-    },
-    contentSpacing: {
-        marginLeft: 10,
-        marginRight: 10,
-        flexDirection: "row",
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-    },
-    footer: {
-        backgroundColor: 'transparent',
-    },
-});
+import {connect} from "react-redux";
 
-class Album extends Component {
+import styles from "./styles";
+
+class Information extends Component {
     static navigationOptions = {
         header: null,
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -68,9 +38,9 @@ class Album extends Component {
                 <Card>
                     <CardItem>
                         <Body>
-                            <Hyperlink linkDefault={ true } linkStyle={{ color: '#29A06A' }}>
-                                <Text style={{margin: 20}}>{information.text}</Text>
-                            </Hyperlink>
+                        <Hyperlink linkDefault={true} linkStyle={{color: "#29A06A"}}>
+                            <Text style={{margin: 20}}>{information.text}</Text>
+                        </Hyperlink>
                         </Body>
                     </CardItem>
                 </Card>
@@ -78,18 +48,18 @@ class Album extends Component {
         };
 
         return (
-            <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
+            <Image source={require("../../../images/background.png")} style={styles.backgroundImage}>
                 <Container>
                     <Header>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="ios-arrow-back" />
+                                <Icon name="ios-arrow-back"/>
                             </Button>
                         </Left>
                         <Body>
                         <Title style={{width: 250}}>{this.props.navigation.state.params.title}</Title>
                         </Body>
-                        <Right />
+                        <Right/>
                     </Header>
                     <Content>
                         <View style={styles.contentSpacing}>
@@ -122,4 +92,12 @@ class Album extends Component {
     }
 }
 
-export default Album;
+function bindAction(dispatch) {
+    return {};
+}
+
+const mapStateToProps = state => ({});
+
+const ConnectedInformation = connect(mapStateToProps, bindAction)(Information);
+
+export default ConnectedInformation;

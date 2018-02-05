@@ -1,98 +1,59 @@
-import React, {Component} from 'react';
-import {View, Image, Text as RNText, StyleSheet, Dimensions} from 'react-native';
+import React, {Component} from "react";
+import {Image, View} from "react-native";
 import {
     Container,
     Content,
-    Card,
-    CardItem,
-    Thumbnail,
     Footer,
     FooterTab,
     Left,
-    Body,
     Text,
-    Right,
     Button,
     Icon,
-    Badge,
-    Segment,
-    Header,
-    Title
-} from 'native-base';
+    Header
+} from "native-base";
 
-import AppTheme from '../../themes/app-theme';
-import Facebook from '../../lib/FacebookGraphApi';
-import Hyperlink from 'react-native-hyperlink'
-import Moment from 'moment';
+import {connect} from "react-redux";
+import {getImage} from "../../actions/albums";
 
-const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        width: null,
-        height: null,
-        resizeMode: 'cover',
-    },
-    header: {
-        marginTop: 20,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: 40,
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: AppTheme.headerTextColor,
-    },
-    contentSpacing: {
-        flex: 1,
-        marginLeft: 10,
-        marginRight: 10,
-        backgroundColor: "red"
-    },
-    footer: {
-        backgroundColor: 'transparent',
-    },
-});
+import styles from "./styles";
 
 class ImageView extends Component {
     static navigationOptions = {
         header: null,
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
-
-        this.state = {
-            imgWidth: 0,
-            imgHeight: 0
-        }
     }
 
     componentDidMount() {
-        let imageSource = this.props.navigation.state.params.imageSource;
-
-        Image.getSize(imageSource, (width, height) => {
-            const screenWidth = Dimensions.get('window').width;
-            const scaleFactor = width / screenWidth;
-            const imageHeight = height / scaleFactor;
-            this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
-        })
+        this.props.getImage(this.props.navigation.state.params.imageSource);
     }
 
     render() {
-        let imageSource = this.props.navigation.state.params.imageSource;
-        const {imgWidth, imgHeight} = this.state;
+        let showImage = (image) => {
+            if (!image || !image.source) {
+                return (
+                    <View></View>
+                );
+            }
+            return (
+                <Image source={{uri: image.source}} style={{width: image.imgWidth, height: image.imgHeight}}/>
+            );
+        };
 
         return (
-            <Image source={require('../../../images/background.png')} style={styles.backgroundImage}>
+            <Image source={require("../../../images/background.png")} style={styles.backgroundImage}>
                 <Container>
                     <Header>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="ios-arrow-back" />
+                                <Icon name="ios-arrow-back"/>
                             </Button>
                         </Left>
                     </Header>
                     <Content>
-                        <Image source={{uri: imageSource}} style={{width: imgWidth, height: imgHeight}}/>
+                        {showImage(this.props.image)}
                     </Content>
                     <Footer>
                         <FooterTab>
@@ -120,4 +81,16 @@ class ImageView extends Component {
     }
 }
 
-export default ImageView;
+function bindAction(dispatch) {
+    return {
+        getImage: (imageSource) => dispatch(getImage(imageSource))
+    };
+}
+
+const mapStateToProps = state => ({
+    image: state.albums.image
+});
+
+const ConnectedImageView = connect(mapStateToProps, bindAction)(ImageView);
+
+export default ConnectedImageView;

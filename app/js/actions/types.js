@@ -1,15 +1,12 @@
-
 export type Action =
-  { type: 'PUSH_NEW_ROUTE', route: string }
-    | { type: 'POP_ROUTE' }
-    | { type: 'POP_TO_ROUTE', route: string }
-    | { type: 'REPLACE_ROUTE', route: string }
-    | { type: 'REPLACE_OR_PUSH_ROUTE', route: string }
-    | { type: 'OPEN_DRAWER'}
-    | { type: 'CLOSE_DRAWER'}
-    | { type: 'SET_USER', name: string}
-    | { type: 'SET_LIST', list: string}
+    { type: "GET_EVENTS", events: array } |
+    { type: "GET_EVENT", event: array } |
+    { type: "GET_NEWS", news: array } |
+    { type: "GET_ALBUMS", albums: array } |
+    { type: "GET_ALBUM_IMAGES", images: array } |
+    { type: "GET_IMAGE", image: {} } |
+    { type: "GET_INFORMATIONS", informations: {} }
 
-export type Dispatch = (action:Action | Array<Action>) => any;
+export type Dispatch = (action: Action | Array<Action>) => any;
 export type GetState = () => Object;
 export type PromiseAction = Promise<Action>;

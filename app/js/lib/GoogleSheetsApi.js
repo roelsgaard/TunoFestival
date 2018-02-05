@@ -3,10 +3,10 @@ import Moment from "moment/moment";
 class GoogleSheet {
     static _getSheet(sheetIndex){
         return fetch("https://spreadsheets.google.com/feeds/list/1CcCXGgPrmARs6vQhgwoAg2_rZbtxx8l5UZsUHFy4VT0/"+sheetIndex+"/public/values?alt=json", {
-            method: 'GET',
+            method: "GET",
             headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
+                Accept: "application/json",
+                "Content-Type": "application/json",
             }
         })
         .then(data => {

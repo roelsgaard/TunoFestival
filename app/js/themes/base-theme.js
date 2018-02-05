@@ -1,18 +1,18 @@
-import color from 'color';
+import color from "color";
 
-import {Platform} from 'react-native';
-import platformTheme from '../../native-base-theme/variables/platform';
+import {Platform} from "react-native";
+import platformTheme from "../../native-base-theme/variables/platform";
 
 const baseTheme = {
 
     // Badge
-    badgeBg: '#ED1727',
-    badgeColor: '#fff',
+    badgeBg: "#ED1727",
+    badgeColor: "#fff",
 
     // Button
-    btnFontFamily: (Platform.OS === 'ios') ? 'HelveticaNeue' : 'Roboto_medium',
-    btnDisabledBg: '#b5b5b5',
-    btnDisabledClr: '#f1f1f1',
+    btnFontFamily: (Platform.OS === "ios") ? "HelveticaNeue" : "Roboto_medium",
+    btnDisabledBg: "#b5b5b5",
+    btnDisabledClr: "#f1f1f1",
 
     get btnPrimaryBg() {
         return this.brandPrimary;
@@ -45,7 +45,7 @@ const baseTheme = {
         return this.inverseTextColor;
     },
     get btnTextSize() {
-        return (Platform.OS === 'ios') ? this.fontSizeBase * 1.1 :
+        return (Platform.OS === "ios") ? this.fontSizeBase * 1.1 :
             this.fontSizeBase - 1;
     },
     get btnTextSizeLarge() {
@@ -68,23 +68,23 @@ const baseTheme = {
     },
 
     // Card
-    cardDefaultBg: '#fff',
+    cardDefaultBg: "#fff",
 
     // Check Box
-    checkboxBgColor: '#039BE5',
+    checkboxBgColor: "#039BE5",
     checkboxSize: 23,
-    checkboxTickColor: '#fff',
+    checkboxTickColor: "#fff",
 
     // Color
-    brandPrimary: '#5067FF',
-    brandInfo: '#5bc0de',
-    brandSuccess: '#5cb85c',
-    brandDanger: '#d9534f',
-    brandWarning: '#f0ad4e',
-    brandSidebar: '#252932',
+    brandPrimary: "#5067FF",
+    brandInfo: "#5bc0de",
+    brandSuccess: "#5cb85c",
+    brandDanger: "#d9534f",
+    brandWarning: "#f0ad4e",
+    brandSidebar: "#252932",
 
     // Font
-    fontFamily: (Platform.OS === 'ios') ? 'HelveticaNeue' : 'Roboto',
+    fontFamily: (Platform.OS === "ios") ? "HelveticaNeue" : "Roboto",
     fontSizeBase: 15,
 
     get fontSizeH1() {
@@ -99,44 +99,44 @@ const baseTheme = {
 
     // Footer
     footerHeight: 45,
-    footerDefaultBg: 'transparent',
+    footerDefaultBg: "transparent",
 
     // FooterTab
-    tabBarTextColor: '#fff',
+    tabBarTextColor: "#fff",
     tabBarTextSize: 11,
-    activeTab: '#fff',
-    sTabBarActiveTextColor: '#007aff',
-    tabBarActiveTextColor: '#fff',
-    tabActiveBgColor: 'rgba(250, 250, 250, 0.2)',
+    activeTab: "#fff",
+    sTabBarActiveTextColor: "#007aff",
+    tabBarActiveTextColor: "#fff",
+    tabActiveBgColor: "rgba(250, 250, 250, 0.2)",
 
     // Header
-    iosToolbarBtnColor: '#007aff',
-    toolbarDefaultBg: (Platform.OS === 'ios') ? '#F8F8F8' : '#4179F7',
-    toolbarHeight: (Platform.OS === 'ios') ? 64 : 56,
-    toolbarIconSize: (Platform.OS === 'ios') ? 20 : 22,
-    toolbarInputColor: '#CECDD2',
-    toolbarInverseBg: '#222',
-    toolbarTextColor: (Platform.OS === 'ios') ? '#000' : '#fff',
+    iosToolbarBtnColor: "#007aff",
+    toolbarDefaultBg: (Platform.OS === "ios") ? "#F8F8F8" : "#4179F7",
+    toolbarHeight: (Platform.OS === "ios") ? 64 : 56,
+    toolbarIconSize: (Platform.OS === "ios") ? 20 : 22,
+    toolbarInputColor: "#CECDD2",
+    toolbarInverseBg: "#222",
+    toolbarTextColor: (Platform.OS === "ios") ? "#000" : "#fff",
     get statusBarColor() {
         return color(this.toolbarDefaultBg).darken(0.2).hexString();
     },
 
     // Icon
-    iconFamily: 'Ionicons',
-    iconFontSize: (Platform.OS === 'ios') ? 30 : 28,
+    iconFamily: "Ionicons",
+    iconFontSize: (Platform.OS === "ios") ? 30 : 28,
     iconMargin: 7,
 
     // InputGroup
     inputFontSize: 15,
-    inputBorderColor: '#D9D5DC',
-    inputSuccessBorderColor: '#2b8339',
-    inputErrorBorderColor: '#ed2f2f',
+    inputBorderColor: "#D9D5DC",
+    inputSuccessBorderColor: "#2b8339",
+    inputErrorBorderColor: "#ed2f2f",
 
     get inputColor() {
         return this.textColor;
     },
     get inputColorPlaceholder() {
-        return '#575757';
+        return "#575757";
     },
 
     inputGroupMarginBottom: 10,
@@ -152,50 +152,50 @@ const baseTheme = {
     lineHeightH1: 32,
     lineHeightH2: 27,
     lineHeightH3: 22,
-    iconLineHeight: (Platform.OS === 'ios') ? 37 : 30,
-    lineHeight: (Platform.OS === 'ios') ? 20 : 26,
+    iconLineHeight: (Platform.OS === "ios") ? 37 : 30,
+    lineHeight: (Platform.OS === "ios") ? 20 : 26,
 
     // List
-    listBorderColor: '#ACAAAB',
-    // listBorderColor: '#ddd',
-    listDividerBg: '#ddd',
+    listBorderColor: "#ACAAAB",
+    // listBorderColor: "#ddd",
+    listDividerBg: "#ddd",
     listItemHeight: 45,
     listItemPadding: 9,
-    listNoteColor: '#808080',
+    listNoteColor: "#808080",
     listNoteSize: 13,
 
     // Progress Bar
-    defaultProgressColor: '#E4202D',
-    inverseProgressColor: '#1A191B',
+    defaultProgressColor: "#E4202D",
+    inverseProgressColor: "#1A191B",
 
     // Radio Button
-    radioBtnSize: (Platform.OS === 'ios') ? 25 : 23,
-    radioColor: '#7e7e7e',
+    radioBtnSize: (Platform.OS === "ios") ? 25 : 23,
+    radioColor: "#7e7e7e",
 
     get radioSelectedColor() {
         return color(this.radioColor).darken(0.2).hexString();
     },
 
     // Spinner
-    defaultSpinnerColor: '#45D56E',
-    inverseSpinnerColor: '#1A191B',
+    defaultSpinnerColor: "#45D56E",
+    inverseSpinnerColor: "#1A191B",
 
     // Tabs
-    tabBgColor: '#F8F8F8',
+    tabBgColor: "#F8F8F8",
     tabFontSize: 15,
-    tabTextColor: '#fff',
+    tabTextColor: "#fff",
 
     // Text
-    textColor: '#000',
-    inverseTextColor: '#fff',
+    textColor: "#000",
+    inverseTextColor: "#fff",
 
     // Title
-    titleFontSize: (Platform.OS === 'ios') ? 17 : 19,
-    subTitleFontSize: (Platform.OS === 'ios') ? 12 : 14,
-    subtitleColor: '#8e8e93',
+    titleFontSize: (Platform.OS === "ios") ? 17 : 19,
+    subTitleFontSize: (Platform.OS === "ios") ? 12 : 14,
+    subtitleColor: "#8e8e93",
 
     // Other
-    borderRadiusBase: (Platform.OS === 'ios') ? 5 : 2,
+    borderRadiusBase: (Platform.OS === "ios") ? 5 : 2,
     borderWidth: 1,
     contentPadding: 10,
 
@@ -203,10 +203,10 @@ const baseTheme = {
         return color(this.tabBgColor).darken(0.03).hexString();
     },
 
-    dropdownBg: '#000',
-    dropdownLinkColor: '#414142',
+    dropdownBg: "#000",
+    dropdownLinkColor: "#414142",
     inputLineHeight: 24,
-    jumbotronBg: '#C9C9CE',
+    jumbotronBg: "#C9C9CE",
     jumbotronPadding: 30,
 };
 

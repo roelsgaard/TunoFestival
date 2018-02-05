@@ -1,21 +1,32 @@
+import AppTheme from "../../themes/app-theme";
 
-const React = require('react-native');
+const React = require("react-native");
+const {StyleSheet} = React;
 
-const { StyleSheet } = React;
-export default {
-  container: {
-    backgroundColor: '#FBFAFA',
-  },
-  row: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 20,
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  mt: {
-    marginTop: 18,
-  },
-};
+export default StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: "cover",
+    },
+    header: {
+        marginTop: 20,
+        backgroundColor: "transparent",
+        textAlign: "center",
+        lineHeight: 40,
+        fontSize: 25,
+        fontWeight: "bold",
+        color: AppTheme.headerTextColor,
+    },
+    contentSpacing: {
+        marginLeft: 10,
+        marginRight: 10,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center"
+    },
+    footer: {
+        backgroundColor: "transparent",
+    },
+});

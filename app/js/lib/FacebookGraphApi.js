@@ -7,10 +7,10 @@ class Facebook {
             .getConfiguration()
             .then(configuration => {
                 return fetch("https://graph.facebook.com/v2.11/tunoefestival/posts?fields=message,story,picture,created_time&access_token=" + configuration.FacebookPageToken, {
-                    method: 'GET',
+                    method: "GET",
                     headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     }
                 })
             })
@@ -34,10 +34,10 @@ class Facebook {
             .then(configuration => {
                 config = configuration;
                 return fetch("https://graph.facebook.com/v2.11/tunoefestival/events?fields=name,start_time,place,picture&since=2017-01-01&until=2017-12-31&limit=1000&access_token=" + configuration.FacebookPageToken, {
-                    method: 'GET',
+                    method: "GET",
                     headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     }
                 })
             })
@@ -91,10 +91,10 @@ class Facebook {
             .getConfiguration()
             .then(configuration => {
                 return fetch("https://graph.facebook.com/v2.11/" + id + "?fields=name,description,cover&access_token=" + configuration.FacebookPageToken, {
-                    method: 'GET',
+                    method: "GET",
                     headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     }
                 })
             })
@@ -116,10 +116,10 @@ class Facebook {
             .getConfiguration()
             .then(configuration => {
                 return fetch("https://graph.facebook.com/v2.11/tunoefestival/albums?fields=name,picture,count,type,created_time,description&access_token=" + configuration.FacebookPageToken, {
-                    method: 'GET',
+                    method: "GET",
                     headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     }
                 })
             })
@@ -145,10 +145,10 @@ class Facebook {
             .getConfiguration()
             .then(configuration => {
                 return fetch("https://graph.facebook.com/v2.11/" + id + "/photos?fields=source&access_token=" + configuration.FacebookPageToken, {
-                    method: 'GET',
+                    method: "GET",
                     headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     }
                 })
             })
