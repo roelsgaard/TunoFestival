@@ -15,7 +15,9 @@ import {
     Button,
     Icon,
     Badge,
-    Segment
+    Segment,
+    List,
+    ListItem
 } from 'native-base';
 
 import AppTheme from '../../themes/app-theme';
@@ -68,23 +70,28 @@ class Informations extends Component {
     }
 
     render() {
-        let showInformations = (informations) => {
+        let showInformations = (informations => {
             return informations.map(information => {
                 return (
-                    <TouchableHighlight key={information.title} onPress={() => this.props.navigation.navigate("Information", information)}>
-                        <View>
-                            <Card style={{marginTop: 0, marginBottom: 0}}>
-                                <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
-                                    <Body style={{flex: 2}}>
-                                        <Text style={{color: "#29A06A", fontWeight: "bold"}}>{information.title}</Text>
-                                    </Body>
-                                    <Right style={{flex: 1}}>
-                                        <Text note style={{color: "#29A06A"}}>{information.category}</Text>
-                                    </Right>
-                                </CardItem>
-                            </Card>
-                        </View>
-                    </TouchableHighlight>
+                    <ListItem button={true} key={information.title} onPress={() => this.props.navigation.navigate("Information", information)} style={{marginLeft: 0, paddingLeft: 10, backgroundColor: "white"}}>
+                        <Text style={{color: "#29A06A"}}>{information.title}</Text>
+                        <Right>
+                            <Icon name="ios-arrow-forward"/>
+                        </Right>
+                    </ListItem>
+                );
+            });
+        });
+
+        let showInformationGroups = (informationGroups) => {
+            return Object.keys(informationGroups).map(informationGroup => {
+                return (
+                    <View key={informationGroup}>
+                        <ListItem itemDivider style={{backgroundColor: "#29A06A", marginTop: 10}}>
+                            <Text style={{color: "white", fontWeight: "bold"}}>{informationGroup}</Text>
+                        </ListItem>
+                        {showInformations(informationGroups[informationGroup])}
+                    </View>
                 );
             });
         };
@@ -97,7 +104,9 @@ class Informations extends Component {
                 <Container>
                     <Content>
                         <View style={styles.contentSpacing}>
-                            {showInformations(this.state.informations)}
+                            <List>
+                                {showInformationGroups(this.state.informations)}
+                            </List>
                         </View>
                     </Content>
                     <Footer>

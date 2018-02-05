@@ -23,15 +23,20 @@ class GoogleSheet {
 
     static getInformations(){
         return this._getSheet(2).then(informations => {
-            let res = informations.map(information => {
-                return {
+            let res = {};
+
+            informations.forEach(information => {
+                if(!res[information.gsx$category.$t]){
+                    res[information.gsx$category.$t] = [];
+                }
+                let categoryList = res[information.gsx$category.$t];
+
+                categoryList.push({
                     title: information.gsx$title.$t,
-                    category: information.gsx$category.$t,
                     text: information.gsx$text.$t
-                };
+                });
             });
 
-            console.log(res);
             return res;
         })
 
@@ -45,7 +50,6 @@ class GoogleSheet {
                 res[configuration.gsx$egenskab.$t] = configuration.gsx$værdi.$t;
             });
 
-            console.log(res);
             return res;
         })
 
