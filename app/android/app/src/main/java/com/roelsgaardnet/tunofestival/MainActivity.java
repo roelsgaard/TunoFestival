@@ -1,4 +1,4 @@
-package com.tunofestival;
+package com.roelsgaardnet.tunofestival;
 
 import com.facebook.react.ReactActivity;
 

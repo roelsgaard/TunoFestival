@@ -105,7 +105,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.tunofestival"
+        applicationId "com.roelsgaardnet.tunofestival"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode googleVer
