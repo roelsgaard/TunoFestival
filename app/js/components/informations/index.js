@@ -73,26 +73,6 @@ class Informations extends Component {
                             </List>
                         </View>
                     </Content>
-                    <Footer>
-                        <FooterTab>
-                            <Button vertical onPress={() => this.props.navigation.navigate("News")}>
-                                <Icon name="logo-facebook"/>
-                                <Text>Nyheder</Text>
-                            </Button>
-                            <Button vertical onPress={() => this.props.navigation.navigate("Program")}>
-                                <Icon name="md-calendar"/>
-                                <Text>Program</Text>
-                            </Button>
-                            <Button vertical onPress={() => this.props.navigation.navigate("Albums")}>
-                                <Icon name="md-images"/>
-                                <Text>Billeder</Text>
-                            </Button>
-                            <Button active vertical onPress={() => this.props.navigation.navigate("Informations")}>
-                                <Icon name="md-list"/>
-                                <Text>Information</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
                 </Container>
             </Image>
         );

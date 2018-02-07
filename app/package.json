@@ -1,6 +1,6 @@
 {
   "name": "TunoFestival",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "postinstall": "remotedev-debugger",
@@ -20,7 +20,7 @@
     "react-native-easy-grid": "0.1.8",
     "react-native-hyperlink": "0.0.12",
     "react-native-modalbox": "^1.3.4",
-    "react-navigation": "1.0.0-beta.11",
+    "react-navigation": "1.0.0-beta.13",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-form": "^6.7.0",

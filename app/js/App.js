@@ -1,15 +1,22 @@
 import React, {Component} from "react";
-import {StyleSheet, AppState} from "react-native";
+import {StyleSheet, AppState, Image} from "react-native";
 import CodePush from "react-native-code-push";
 
 import {Container, Content, Text, View} from "native-base";
 import Modal from "react-native-modalbox";
-import MainStackRouter from "./Routers/MainStackRouter";
+import MainNavRouter from "./Routers/MainNavRouter";
 import ProgressBar from "./components/loaders/ProgressBar";
 
 import theme from "./themes/base-theme";
+import AppTheme from "./themes/app-theme";
 
 const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: "cover",
+    },
     container: {
         flex: 1,
         width: null,
@@ -140,7 +147,11 @@ class App extends Component {
             );
         }
 
-        return <MainStackRouter/>;
+        return (
+            <Image source={require("../images/background.png")} style={styles.backgroundImage}>
+                <MainNavRouter/>
+            </Image>
+        );
     }
 }
 
