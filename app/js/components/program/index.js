@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {View, Image, Text as RNText, TouchableHighlight, Dimensions} from "react-native";
-import {NavigationActions} from "react-navigation";
 import {
     Container,
     Content,
@@ -15,7 +14,8 @@ import {
     Right,
     Button,
     Icon,
-    Segment
+    Segment,
+    Header
 } from "native-base";
 
 import Moment from "moment";

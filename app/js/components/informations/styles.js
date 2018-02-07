@@ -1,7 +1,6 @@
 import AppTheme from "../../themes/app-theme";
 
-const React = require("react-native");
-const {StyleSheet} = React;
+const {StyleSheet, Platform} = require("react-native");
 
 export default StyleSheet.create({
     backgroundImage: {
@@ -11,7 +10,8 @@ export default StyleSheet.create({
         resizeMode: "cover",
     },
     header: {
-        marginTop: 20,
+        marginTop: (Platform.OS === "ios") ? 20 : 10,
+        marginBottom: (Platform.OS === "ios") ? 0 : 10,
         backgroundColor: "transparent",
         textAlign: "center",
         lineHeight: 40,

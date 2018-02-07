@@ -1,5 +1,4 @@
-const React = require("react-native");
-const {StyleSheet} = React;
+const {StyleSheet} = require("react-native");
 
 export default StyleSheet.create({
     backgroundImage: {

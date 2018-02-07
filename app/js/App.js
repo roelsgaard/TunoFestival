@@ -1,8 +1,11 @@
 import React, {Component} from "react";
-import {StyleSheet, AppState, Image, TouchableHighlight, Text as RNText, View} from "react-native";
+import {
+    StyleSheet, AppState, Image, TouchableHighlight, Text as RNText, View, NativeModules, processColor,
+    Platform
+} from "react-native";
 import CodePush from "react-native-code-push";
 
-import {Container, Content, Text, Spinner} from "native-base";
+import {Container, Content, Text, Spinner, Header} from "native-base";
 import Modal from "react-native-modalbox";
 import MainNavRouter from "./Routers/MainNavRouter";
 import ProgressBar from "./components/loaders/ProgressBar";
@@ -10,6 +13,12 @@ import theme from "./themes/base-theme";
 import AppTheme from "./themes/app-theme";
 import {connect} from "react-redux";
 import {getGeneralInfo} from "./actions/general";
+
+import { StatusBar } from 'react-native';
+StatusBar.setTranslucent(true);
+StatusBar.setBackgroundColor(processColor("transparent"), true);
+StatusBar.setBarStyle("dark-content");
+
 
 const styles = StyleSheet.create({
     backgroundImage: {

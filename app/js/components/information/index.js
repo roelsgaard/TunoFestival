@@ -50,14 +50,14 @@ class Information extends Component {
         return (
             <Image source={require("../../../images/background.png")} style={styles.backgroundImage}>
                 <Container>
-                    <Header>
+                    <Header style={{backgroundColor: "#29A06A", paddingTop: 10, height: 60}} androidStatusBarColor={"#29A06A"}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="ios-arrow-back"/>
+                                <Icon style={{color: "#fff"}} name="ios-arrow-back"/>
                             </Button>
                         </Left>
                         <Body>
-                        <Title style={{width: 250}}>{this.props.navigation.state.params.title}</Title>
+                        <Title style={{width: 250, color: "#fff"}}>{this.props.navigation.state.params.title}</Title>
                         </Body>
                         <Right/>
                     </Header>
