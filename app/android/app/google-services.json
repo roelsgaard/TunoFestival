@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "727344611543",
+    "firebase_url": "https://tuno-festival-app.firebaseio.com",
+    "project_id": "tuno-festival-app",
+    "storage_bucket": "tuno-festival-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727344611543:android:bd99f6b08c20a788",
+        "android_client_info": {
+          "package_name": "com.roelsgaardnet.tunofestival"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727344611543-c3v9c2i8508t64u6faggos1g3e2u3f43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWnY_ZdrLyHVN-lmlZWNABd82vgRpt7xE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

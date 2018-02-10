@@ -13,6 +13,7 @@ import theme from "./themes/base-theme";
 import AppTheme from "./themes/app-theme";
 import {connect} from "react-redux";
 import {getGeneralInfo} from "./actions/general";
+import FCMHandler from "./FCM";
 
 import { StatusBar } from 'react-native';
 StatusBar.setTranslucent(true);
@@ -204,6 +205,7 @@ class App extends Component {
         if(this.state.showSplash){
             return (
                 <Image source={require("../images/background.png")} style={styles.backgroundImage}>
+                    <FCMHandler/>
                     <TouchableHighlight
                         style={{flex: 1}}
                         onPress={() => {
@@ -231,6 +233,7 @@ class App extends Component {
 
         return (
             <Image source={require("../images/background.png")} style={styles.backgroundImage}>
+                <FCMHandler/>
                 <MainNavRouter/>
             </Image>
         );
