@@ -32,7 +32,7 @@ const notifyTopic = (topic) => {
         .messaging()
         .sendToTopic(topic.topic, payload)
         .then(response => {
-            console.log(response);
+            console.log("notifying devices");
             return response;
         })
         .catch(err => {
@@ -52,7 +52,7 @@ exports.webhooksPageFeed = functions.https.onRequest((req, res) => {
         return;
     }
 
-    console.log("webhooksPageFeed", req.body);
+    console.log("webhooksPageFeed", JSON.stringify(req.body));
 
     return notifyTopic(topics.NEWS)
         .then(response => res.send(response));
