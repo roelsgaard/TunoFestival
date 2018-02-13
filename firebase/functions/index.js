@@ -19,7 +19,7 @@ const topics = {
         title: "Der er kommet en nyheder"
     }
 };
-
+æ0pæø
 const notifyTopic = (topic) => {
     const payload = {
         notification: {
@@ -53,6 +53,15 @@ exports.webhooksPageFeed = functions.https.onRequest((req, res) => {
     }
 
     console.log("webhooksPageFeed", JSON.stringify(req.body));
+
+    let entry = req.body.entry;
+    console.log("webhooksPageFeed - entry:", JSON.stringify(entry));
+
+    if(entry && entry[0].changes[0].value.verb === "add" && entry[0].changes[0].value.item === "status") {
+        let pageId = req.body.entry[0].id;
+        let postId = req.body.entry[0].changes[0].value.post_id;
+        console.log("webhooksPageFeed - pageId: " + pageId + " - postId: " + postId);
+    }
 
     return notifyTopic(topics.NEWS)
         .then(response => res.send(response));
