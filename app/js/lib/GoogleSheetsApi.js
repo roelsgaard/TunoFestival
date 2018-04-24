@@ -21,7 +21,7 @@ class GoogleSheet {
     }
 
     static getInformations(){
-        return this._getSheet(2).then(informations => {
+        return this._getSheet(3).then(informations => {
             let res = {};
 
             informations.forEach(information => {
@@ -52,6 +52,48 @@ class GoogleSheet {
             return res;
         })
 
+    }
+
+    static getEvents() {
+        return this._getSheet(2)
+            .then(events => {
+                return events.map(event => {
+                    return {
+                        id: event.id.$t,
+                        artist: event.gsx$kunstner.$t,
+                        scene: event.gsx$kunstner.$t,
+                        start: new Moment(event.gsx$start.$t, "DD/MM/YYYY HH:mm").valueOf(),
+                        end: new Moment(event.gsx$slut.$t, "DD/MM/YYYY HH:mm").valueOf(),
+                        picture: event.gsx$billede.$t,
+                        description: event.gsx$beskrivelse.$t,
+                    };
+                });
+            })
+            .then(events => {
+                return events.sort((a,b) => a.start - b.start);
+            })
+            .then(events => {
+                let eventGroups = [];
+
+                events.forEach(event => {
+                    let startDay = (new Moment(event.start)).format("dddd");
+                    let eventGroup = eventGroups.find(eg => eg.name === startDay);
+                    if (!eventGroup) {
+                        eventGroup = {
+                            name: startDay,
+                            events: []
+                        };
+                        eventGroups.push(eventGroup);
+                    }
+
+                    eventGroup.events.push(event);
+                });
+
+                return eventGroups;
+            })
+            .catch(err => {
+                throw err;
+            });
     }
 }
 

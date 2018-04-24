@@ -23,6 +23,7 @@ import {connect} from "react-redux";
 import {getEvent} from "../../actions/events";
 
 import styles from "./styles";
+import Moment from "moment/moment";
 
 class Event extends Component {
     static navigationOptions = {
@@ -34,15 +35,15 @@ class Event extends Component {
     }
 
     componentDidMount() {
-        this.props.getEvent(this.props.navigation.state.params.eventId);
+        this.props.getEvent(this.props.navigation.state.params);
     }
 
     render() {
         let showEvent = (event) => {
             let showImage = (event) => {
-                if (event && event.cover && event.cover.source) {
-                    return <Image source={{uri: event.cover.source}} resizeMethod="resize"
-                                  style={{width: event.cover.imgWidth, height: 200}}/>
+                if (event && event.cover && event.picture) {
+                    return <Image source={{uri: event.picture}} resizeMethod="resize"
+                                  style={{width: event.cover.imgWidth, height: event.cover.imgHeight}}/>
                 }
             };
 
@@ -52,6 +53,9 @@ class Event extends Component {
                         <CardItem>
                             <Body>
                             {showImage(event)}
+
+                            <Text note
+                                  style={{color: "#29A06A"}}>{Moment(event.start).format("DD. MMM YYYY")} {Moment(event.start).format("HH:mm")} - {Moment(event.end).format("HH:mm")}</Text>
 
                             <Hyperlink linkDefault={true} linkStyle={{color: "#29A06A"}}>
                                 <Text style={{margin: 20}}>{event.description}</Text>
@@ -73,7 +77,7 @@ class Event extends Component {
                             </Button>
                         </Left>
                         <Body>
-                            <Title style={{width: 250, color: "#fff"}}>{this.props.navigation.state.params.eventName}</Title>
+                            <Title style={{width: 250, color: "#fff"}}>{this.props.navigation.state.params.artist}</Title>
                         </Body>
                         <Right/>
                     </Header>

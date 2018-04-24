@@ -34,7 +34,7 @@ class Program extends Component {
         super(props);
 
         this.state = {
-            selectedEvents: "andre"
+            selectedEvents: undefined
         };
     }
 
@@ -84,21 +84,23 @@ class Program extends Component {
             if (!eventGroups) return;
 
             let selectedEvents = this.state.selectedEvents;
+
+            if(!selectedEvents && eventGroups.length > 0){
+                selectedEvents = eventGroups[0].name;
+                this.setState({selectedEvents: selectedEvents});
+            }
+
             let events = eventGroups.length > 0 ? eventGroups.find(eventGroup => eventGroup.name === selectedEvents).events : [];
             return events.map(event => {
                 let thumbnail = <Thumbnail square style={{backgroundColor: "black"}}
                                            source={{uri: "https://scontent.faar1-1.fna.fbcdn.net/v/t31.0-8/23405980_1507978159287491_4484996441375042237_o.png?oh=3013b87a13d506c49a3d839f2f303732&oe=5AF71A0D"}}/>;
-                if (event && event.picture && event.picture.data) {
+                if (event && event.picture) {
                     thumbnail =
-                        <Thumbnail square style={{backgroundColor: "black"}} source={{uri: event.picture.data.url}}/>;
+                        <Thumbnail square style={{backgroundColor: "black"}} source={{uri: event.picture}}/>;
                 }
 
                 return (
-                    <TouchableHighlight key={event.id} onPress={() => this.props.navigation.navigate("Event", {
-                        eventId: event.id,
-                        eventName: event.name,
-                        eventImageSource: event.picture.data.url
-                    })}>
+                    <TouchableHighlight key={event.id} onPress={() => this.props.navigation.navigate("Event", event)}>
                         <View>
                             <Card style={{marginTop: 0, marginBottom: 0}}>
                                 <CardItem style={{borderBottomColor: "lightgray", borderBottomWidth: 1}}>
@@ -106,13 +108,13 @@ class Program extends Component {
                                         {thumbnail}
                                     </Left>
                                     <Body style={{flex: 2}}>
-                                    <Text style={{color: "#29A06A", fontWeight: "bold"}}>{event.name}</Text>
+                                    <Text style={{color: "#29A06A", fontWeight: "bold"}}>{event.artist}</Text>
                                     <Text note
-                                          style={{fontSize: 12}}>{Moment(event.start_time).format("DD. MMM YYYY")}</Text>
+                                          style={{fontSize: 12}}>{Moment(event.start).format("DD. MMM YYYY")}</Text>
                                     </Body>
                                     <Right style={{flex: 1}}>
                                         <Text note
-                                              style={{color: "#29A06A"}}>{Moment(event.start_time).format("HH:mm")}</Text>
+                                              style={{color: "#29A06A"}}>{Moment(event.start).format("HH:mm")} - {Moment(event.end).format("HH:mm")}</Text>
                                     </Right>
                                 </CardItem>
                             </Card>

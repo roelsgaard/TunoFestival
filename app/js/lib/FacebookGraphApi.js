@@ -25,6 +25,7 @@ class Facebook {
             });
     }
 
+    /*
     static getEvents() {
         let config;
 
@@ -105,6 +106,7 @@ class Facebook {
                 throw err;
             });
     }
+    */
 
     static getAlbums() {
         return GoogleSheetsApi
