@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26a54adb-a1c8-461c-82e7-b049628cbb3b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/firebase/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/firebase/functions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,9 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ic_notif.png" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ic_notif.png" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/android/app/src/main/res/mipmap-hdpi/ic_notif.png">
           <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="ic_notif.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/android/app/src/main/res/mipmap-xxxhdpi/ic_notif.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -54,8 +68,8 @@
         <option value="$PROJECT_DIR$/app/js/components/event/index.js" />
         <option value="$PROJECT_DIR$/app/js/lib/GoogleSheetsApi.js" />
         <option value="$PROJECT_DIR$/app/js/components/program/index.js" />
-        <option value="$PROJECT_DIR$/app/package.json" />
         <option value="$PROJECT_DIR$/firebase/functions/index.js" />
+        <option value="$PROJECT_DIR$/app/package.json" />
       </list>
     </option>
   </component>
@@ -96,68 +110,6 @@
               <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
               <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="mipmap-hdpi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TunoFestival" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TunoFestival" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="mipmap-xxxhdpi" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -212,15 +164,16 @@
       <workItem from="1518420666005" duration="104000" />
       <workItem from="1519212996858" duration="118000" />
       <workItem from="1524509751099" duration="5654000" />
-      <workItem from="1524681382598" duration="3048000" />
+      <workItem from="1524681382598" duration="3524000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22680000" />
+    <option name="totallyTimeSpent" value="23156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1132" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="10" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24960506" />
@@ -418,13 +371,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firebase/functions/node_modules/firebase-admin/lib/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -442,11 +388,18 @@
     <entry file="file://$PROJECT_DIR$/app/android/app/src/main/res/ic_launcher.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/android/app/src/main/res/mipmap-hdpi/ic_notif.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/android/app/src/main/res/mipmap-xxxhdpi/ic_notif.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/android/app/src/main/res/mipmap-hdpi/ic_notif.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/app/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
