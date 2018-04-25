@@ -13,13 +13,15 @@ admin.initializeApp(functions.config().firebase);
 // read facebook page subscriptions
 // curl -i -X GET "https://graph.facebook.com/v2.12/tunoefestival/subscribed_apps?access_token=EAAK4hDLDmzMBACRfTre1Oap0Hz0CMske2ZAiyd10XsCzKGY8OKKRbisZCsSPNAL7Ip4UFOJGhhaJZAMgSITMRfxdy2xzEqzcZCfTZCAwOm4VVXKekZCnwP7pou0BTxpZBA0o9VrDkcXJoEZAoToG8ZBVHKfCxr6abibacR6X5CzaZAjL25IvC7PRQZB11jky8gtZCAuwgy7ilJbHVAZDZD"
 
+const TUNO_FESTIVAL_ID = "281424661942853";
+
 const topics = {
     NEWS: {
         topic: "news",
         title: "Der er kommet en nyheder"
     }
 };
-æ0pæø
+
 const notifyTopic = (topic) => {
     const payload = {
         notification: {
@@ -52,19 +54,24 @@ exports.webhooksPageFeed = functions.https.onRequest((req, res) => {
         return;
     }
 
-    console.log("webhooksPageFeed", JSON.stringify(req.body));
-
     let entry = req.body.entry;
-    console.log("webhooksPageFeed - entry:", JSON.stringify(entry));
 
-    if(entry && entry[0].changes[0].value.verb === "add" && entry[0].changes[0].value.item === "status") {
-        let pageId = req.body.entry[0].id;
-        let postId = req.body.entry[0].changes[0].value.post_id;
-        console.log("webhooksPageFeed - pageId: " + pageId + " - postId: " + postId);
+    if(!entry || !entry[0].changes[0]) {
+        res.send("nothing to notify, no changes");
+        return;
     }
 
-    return notifyTopic(topics.NEWS)
-        .then(response => res.send(response));
+    let change = entry[0].changes[0];
+    console.log("webhooksPageFeed - change:", JSON.stringify(change));
+    console.log("webhooksPageFeed - from: " + change.value.from.id + " - verb: " + change.value.verb + " - item: " + change.value.item);
+
+    if(("" + change.value.from.id !== TUNO_FESTIVAL_ID) || ("" + change.value.verb !== "add")) {
+        res.send("nothing to notify, changes was not from page");
+        return;
+    }
+
+    // send if new from page
+    return notifyTopic(topics.NEWS).then(response => res.send(response));
 });
 
 
